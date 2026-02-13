@@ -1,0 +1,213 @@
+# 📘 Smart University Admissions Assistant
+## Project Documentation
+
+---
+
+## 1. Introduction
+
+The Smart University Admissions Assistant is a frontend web application designed to simplify the university admission process for students. It provides structured guidance, eligibility information, document tracking, deadline monitoring, and a basic chatbot for answering common queries.
+
+This system operates entirely on the client side using HTML, CSS, and JavaScript.
+
+---
+
+## 2. Project Objectives
+
+- Provide clear information about academic programs
+- Help students track their application progress
+- Display required admission documents
+- Show real-time deadline countdown
+- Offer instant responses through a chatbot
+- Deliver a clean and interactive user interface
+
+---
+
+## 3. Scope of the Project
+
+### Included:
+- Program selection with dynamic details
+- Application progress tracker
+- Document checklist
+- Deadline countdown timer
+- Rule-based chatbot
+- Dark mode toggle
+
+### Not Included:
+- Backend server
+- Database storage
+- User authentication
+- Real AI integration
+
+---
+
+## 4. System Overview
+
+Type: Static Web Application  
+Architecture: Client-Side Only  
+
+All functionality runs inside the browser without any server communication.
+
+---
+
+## 5. Technologies Used
+
+- HTML5 – Page structure
+- CSS3 – Styling and layout
+- JavaScript – Interactivity and dynamic updates
+
+---
+
+## 6. Functional Modules
+
+### 6.1 Program Selection Module
+
+Allows users to select a program (B.Tech, MBA, BBA) and dynamically displays related eligibility and career details.
+
+Implementation:
+- `<select>` dropdown element
+- JavaScript `change` event listener
+- DOM manipulation for displaying program details
+
+---
+
+### 6.2 Application Progress Tracker
+
+Tracks completion of major application steps:
+
+- Choose Program
+- Check Eligibility
+- Upload Documents
+- Submit Application
+
+Working:
+- Uses checkbox inputs
+- JavaScript calculates completion percentage
+- Updates progress bar width dynamically
+
+Formula:
+(Completed Steps / Total Steps) × 100
+
+---
+
+### 6.3 Document Checklist
+
+Displays common required admission documents:
+
+- Mark Sheets
+- ID Proof
+- Entrance Exam Score
+- Statement of Purpose
+
+This improves usability but does not store or validate documents.
+
+---
+
+### 6.4 Deadline Countdown Timer
+
+Displays remaining time until the application deadline.
+
+Working:
+- Uses JavaScript `Date()` object
+- `setInterval()` updates countdown every second
+- Stops when deadline passes
+
+---
+
+### 6.5 Chatbot Module
+
+A simple rule-based chatbot.
+
+Working:
+- Converts user input to lowercase
+- Checks for keywords (program, eligibility, documents, deadline)
+- Returns predefined responses
+
+This is not an AI chatbot but a keyword-based system.
+
+---
+
+### 6.6 Dark Mode Feature
+
+Allows users to toggle between light and dark themes.
+
+Working:
+- Toggles a CSS class on the `<body>` element
+- CSS updates background and text colors
+
+---
+
+## 7. User Workflow
+
+1. User opens the website.
+2. Selects a program.
+3. Reviews eligibility criteria.
+4. Tracks application steps using progress tracker.
+5. Checks required documents.
+6. Monitors deadline countdown.
+7. Uses chatbot for quick assistance.
+
+---
+
+## 8. Testing Checklist
+
+Ensure the following work correctly:
+
+- Program dropdown updates information
+- Progress bar calculates correctly
+- Countdown timer updates properly
+- Chatbot responds to valid keywords
+- Dark mode switches themes
+- Layout is responsive on different screen sizes
+
+---
+
+## 9. Deployment
+
+Since this is a static project, it can be deployed using:
+
+- GitHub Pages
+- Netlify
+- Vercel
+- Any static hosting platform
+
+No server setup is required.
+
+---
+
+## 10. Limitations
+
+- No data persistence
+- No backend validation
+- Chatbot is not AI-based
+- No login or user accounts
+- No real-time application tracking
+
+---
+
+## 11. Future Enhancements
+
+- AI-powered chatbot integration
+- Backend database connectivity
+- Student login dashboard
+- Admin panel
+- Email notifications
+- Application status tracking
+- Full-stack implementation
+- React.js version
+
+---
+
+## 12. Conclusion
+
+The Smart University Admissions Assistant demonstrates how an interactive and functional admission guidance system can be built using only frontend technologies.
+
+It is suitable for:
+- Academic mini projects
+- Frontend development practice
+- Portfolio showcase
+
+---
+
+## Author
+
+Patel Yashvi
