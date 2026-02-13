@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart University Admissions Assistant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    transition: 0.3s;
+}
+
+.dark-mode {
+    background: #1e1e2f;
+    color: white;
+}
+
+header {
+    background: #4b2aad;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.dark-mode .card {
+    background: #2b2b40;
+}
+
+h2 {
+    color: #4b2aad;
+}
+
+select, input[type="text"] {
+    padding: 8px;
+    width: 70%;
+    margin-top: 5px;
+}
+
+button {
+    padding: 8px 12px;
+    background: #4b2aad;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.progress-bar {
+    width: 100%;
+    background: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress {
+    height: 15px;
+    width: 0%;
+    background: #4b2aad;
+    transition: 0.4s;
+}
+
+.chat-window {
+    height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.bot {
+    background: #e8e4ff;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.user {
+    background: #d1ffd6;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 5px 0;
+    text-align: right;
+}
+
+.dark-toggle {
+    float: right;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Smart University Admissions Assistant</h1>
+<p>Apply smarter & faster 🚀</p>
+<button class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle Mode</button>
+</header>
+
+<div class="container">
+
+<!-- Program Selection -->
+<div class="card">
+<h2>Select Program</h2>
+<select id="programSelect">
+<option value="">-- Choose Program --</option>
+<option value="btech">B.Tech (4 Years)</option>
+<option value="mba">MBA (2 Years)</option>
+<option value="bba">BBA (3 Years)</option>
+</select>
+<p id="programInfo"></p>
+</div>
+
+<!-- Application Progress -->
+<div class="card">
+<h2>Application Progress Tracker</h2>
+
+<label><input type="checkbox" onchange="updateProgress()"> Choose Program</label><br>
+<label><input type="checkbox" onchange="updateProgress()"> Check Eligibility</label><br>
+<label><input type="checkbox" onchange="updateProgress()"> Upload Documents</label><br>
+<label><input type="checkbox" onchange="updateProgress()"> Submit Application</label>
+
+<div class="progress-bar">
+<div class="progress" id="progressBar"></div>
+</div>
+<p id="progressText">0% Completed</p>
+</div>
+
+<!-- Document Checklist -->
+<div class="card">
+<h2>Required Documents</h2>
+<label><input type="checkbox"> Mark Sheets</label><br>
+<label><input type="checkbox"> ID Proof</label><br>
+<label><input type="checkbox"> Entrance Exam Score</label><br>
+<label><input type="checkbox"> Statement of Purpose</label>
+</div>
+
+<!-- Deadline Countdown -->
+<div class="card">
+<h2>Application Deadline Countdown</h2>
+<p id="countdown"></p>
+</div>
+
+<!-- Chatbot -->
+<div class="card">
+<h2>Admissions Chatbot</h2>
+
+<div class="chat-window" id="chatWindow">
+<div class="bot">Hello 👋 Ask me about programs, eligibility, deadlines or documents.</div>
+</div>
+
+<input type="text" id="userInput" placeholder="Ask your question...">
+<button onclick="sendMessage()">Send</button>
+</div>
+
+</div>
+
+<footer style="text-align:center;padding:15px;color:#666;">
+© 2026 Smart Admissions Assistant
+</footer>
+
+<script>
+
+// Dark Mode
+function toggleDarkMode(){
+    document.body.classList.toggle("dark-mode");
+}
+
+// Program Info
+document.getElementById("programSelect").addEventListener("change", function(){
+    let info = document.getElementById("programInfo");
+    let value = this.value;
+
+    if(value === "btech"){
+        info.innerText = "B.Tech: Requires 10+2 with PCM. Career in Engineering & Technology.";
+    }
+    else if(value === "mba"){
+        info.innerText = "MBA: Requires Graduation. Career in Management & Business Leadership.";
+    }
+    else if(value === "bba"){
+        info.innerText = "BBA: Requires 10+2. Career in Business & Administration.";
+    }
+    else{
+        info.innerText = "";
+    }
+});
+
+// Progress Tracker
+function updateProgress(){
+    let checkboxes = document.querySelectorAll(".card input[type='checkbox']");
+    let checked = 0;
+    let total = 4; 
+    for(let i=0; i<4; i++){
+        if(checkboxes[i].checked) checked++;
+    }
+    let percent = (checked/total)*100;
+    document.getElementById("progressBar").style.width = percent + "%";
+    document.getElementById("progressText").innerText = percent + "% Completed";
+}
+
+// Countdown Timer
+let deadline = new Date("June 30, 2026 23:59:59").getTime();
+let x = setInterval(function(){
+    let now = new Date().getTime();
+    let distance = deadline - now;
+
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    document.getElementById("countdown").innerText = days + " days remaining";
+
+    if(distance < 0){
+        clearInterval(x);
+        document.getElementById("countdown").innerText = "Deadline Closed!";
+    }
+}, 1000);
+
+// Chatbot
+function sendMessage(){
+    let input = document.getElementById("userInput");
+    let message = input.value.trim();
+    if(message === "") return;
+
+    let chatWindow = document.getElementById("chatWindow");
+
+    let userDiv = document.createElement("div");
+    userDiv.className = "user";
+    userDiv.innerText = message;
+    chatWindow.appendChild(userDiv);
+
+    let botDiv = document.createElement("div");
+    botDiv.className = "bot";
+
+    message = message.toLowerCase();
+    let reply = "Please ask about programs, eligibility, documents or deadlines.";
+
+    if(message.includes("program")){
+        reply = "We offer B.Tech, MBA and BBA programs. Select from dropdown above for details.";
+    }
+    else if(message.includes("eligibility")){
+        reply = "Eligibility depends on program. B.Tech requires 10+2 PCM. MBA requires Graduation.";
+    }
+    else if(message.includes("document")){
+        reply = "Required documents include Mark Sheets, ID Proof, Entrance Exam Score & SOP.";
+    }
+    else if(message.includes("deadline")){
+        reply = "The final deadline is June 30, 2026.";
+    }
+
+    botDiv.innerText = reply;
+    chatWindow.appendChild(botDiv);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+    input.value = "";
+}
+
+</script>
+
+</body>
+</html>
